@@ -8,3 +8,5 @@ async def on_ready():
     print("Bot is ready!")
 
 client.run(os.environ['TOKEN'])
+
+# test
