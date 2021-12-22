@@ -9,12 +9,12 @@ async def on_ready():
 
 
 # test
-@client.event
-async def on_message(message):
-    if message.author.bot:
-        return
-    else:
-        await message.channel.send("Hello there!")
+# @client.event
+# async def on_message(message):
+#     if message.author.bot:
+#         return
+#     else:
+#         await message.channel.send("Hello there!")
 
 client.run(os.environ['TOKEN'])
 
