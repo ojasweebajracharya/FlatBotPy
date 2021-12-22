@@ -7,6 +7,13 @@ client = discord.Client()
 async def on_ready():
     print("Bot is ready!")
 
-client.run(os.environ['TOKEN'])
 
 # test
+async def on_message(message):
+    if message.author.bot:
+        return
+    else:
+        await message.channel.send("Hello there!")
+    
+    
+client.run(os.environ['TOKEN'])
