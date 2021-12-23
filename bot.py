@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 client = discord.Client()
-flatBotChannel = client.channels.cache.get("634765417574957078")
+
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
 num = 0
 
@@ -51,7 +51,12 @@ def printSchedule():
 
 @aiocron.crontab('0 * * * *')
 async def cornjob1():
-    await flatBotChannel.send('Hour Cron Test')
+    await message.channel.send('Hour Cron Test')
+
+@client.event
+def testChannel():
+  channel = client.channels.cache.find(channel => channel.name === "general")
+  channel.send("aaaaaaaaaaaa")
 
 # client.run(os.environ['TOKEN'])
 
