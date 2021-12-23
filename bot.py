@@ -49,14 +49,14 @@ def printSchedule():
     num += 1
     runBot()
 
-@aiocron.crontab('0 * * * *')
-async def cornjob1():
-    await message.channel.send('Hour Cron Test')
+# @aiocron.crontab('0 * * * *')
+# async def cornjob1():
+#     await flatBotchannel.channel.send('Hour Cron Test')
 
 @client.event
-def testChannel():
+async def testChannel():
   channel = client.get_channel(634765417574957078)
-  channel.send('hello')
+  await channel.send('hello')
 
 # client.run(os.environ['TOKEN'])
 
