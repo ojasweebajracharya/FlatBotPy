@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-
+flatBotChannel = 0
 client = discord.Client()
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
 num = 0
@@ -27,6 +27,7 @@ num = 0
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
+    flatBotChannel = client.channels.cache.get("634765417574957078")
 
 def runBot():
   client.on("ready", printSchedule())
@@ -47,11 +48,9 @@ def printSchedule():
   else:
     num += 1
     runBot()
-    
-@client.event
+
 @aiocron.crontab('0 * * * *')
 async def cornjob1():
-    flatBotChannel = client.channels.cache.get("634765417574957078")
     await flatBotChannel.send('Hour Cron Test')
 
 # client.run(os.environ['TOKEN'])
