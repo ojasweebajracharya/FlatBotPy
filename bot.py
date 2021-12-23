@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-flatBotChannel = 0
 client = discord.Client()
+flatBotChannel = client.channels.cache.get("634765417574957078")
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
 num = 0
 
@@ -27,7 +27,7 @@ num = 0
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
-    flatBotChannel = client.channels.cache.get("634765417574957078")
+    
 
 def runBot():
   client.on("ready", printSchedule())
