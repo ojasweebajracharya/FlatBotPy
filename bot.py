@@ -27,7 +27,7 @@ num = 0
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
-    runBot()
+    testChannel()
     
 
 def runBot():
