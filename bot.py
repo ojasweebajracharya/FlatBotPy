@@ -1,7 +1,7 @@
 import discord
 import os
 import aiocron
-from dotenv import load_dotenv
+from python-dotenv import load_dotenv
 # test
 
 load_dotenv()
@@ -55,7 +55,7 @@ def printSchedule():
 async def cornjob1():
     await flatBotChannel.send('Hour Cron Test')
 
-client.run(os.environ['TOKEN'])
+# client.run(os.environ['TOKEN'])
 
 # this was what was on repl
 # import os
@@ -102,5 +102,5 @@ client.run(os.environ['TOKEN'])
 
 
 
-# client.run(TOKEN)
+client.run(TOKEN)
 
