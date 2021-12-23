@@ -1,15 +1,13 @@
 import discord
 import os
 import aiocron
-import load_dotenv
+# import load_dotenv
 # test
 
-load_dotenv()
-TOKEN = os.getenv('TOKEN')
+# load_dotenv()
+# TOKEN = os.getenv('TOKEN')
 
 client = discord.Client()
-
-# client = discord.Client()
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
 num = 0
 flatBotChannel = client.channels.cache.get("634765417574957078")
@@ -55,7 +53,7 @@ def printSchedule():
 async def cornjob1():
     await flatBotChannel.send('Hour Cron Test')
 
-# client.run(os.environ['TOKEN'])
+client.run(os.environ['TOKEN'])
 
 # this was what was on repl
 # import os
@@ -102,5 +100,5 @@ async def cornjob1():
 
 
 
-client.run(TOKEN)
+# client.run(TOKEN)
 
