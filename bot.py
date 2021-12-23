@@ -11,8 +11,6 @@ client = discord.Client()
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
 num = 0
 
-
-
 # @client.event
 # async def on_ready():
 #     print("Bot is ready!")
@@ -49,7 +47,8 @@ def printSchedule():
   else:
     num += 1
     runBot()
-
+    
+@client.event
 @aiocron.crontab('0 * * * *')
 async def cornjob1():
     flatBotChannel = client.channels.cache.get("634765417574957078")
