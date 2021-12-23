@@ -10,7 +10,7 @@ TOKEN = os.getenv('TOKEN')
 client = discord.Client()
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
 num = 0
-flatBotChannel = client.channels.cache.get("634765417574957078")
+
 
 
 # @client.event
@@ -34,6 +34,7 @@ def runBot():
   client.on("ready", printSchedule())
 
 def printSchedule():
+  flatBotChannel = client.channels.cache.get("634765417574957078")
   flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
 
   flatBotChannel.send(flatmates[num+1] + "'s turn to clean the bathroom with the shower (clean shower, wipe all surfaces, mop floor? (vacuum? if the floor is dry?))")
