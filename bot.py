@@ -1,13 +1,18 @@
 import discord
 import os
 import aiocron
+from dotenv import load_dotenv
 # test
 
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
 
 client = discord.Client()
+
+# client = discord.Client()
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
 num = 0
-flatBotChannel = client.channel.cache.get("634765417574957078")
+flatBotChannel = client.channels.cache.get("634765417574957078")
 
 
 @client.event
