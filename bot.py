@@ -55,9 +55,9 @@ def printSchedule():
 #     await flatBotchannel.channel.send('Hour Cron Test')
 
 
-def testChannel():
+async def testChannel():
   channel = client.get_channel(634765417574957078)
-  channel.send('hello')
+  await channel.send('hello')
 
 # client.run(os.environ['TOKEN'])
 
