@@ -50,9 +50,9 @@ def printSchedule():
     num += 1
     runBot()
 
-# @aiocron.crontab('0 * * * *')
-# async def cornjob1():
-#     await flatBotchannel.channel.send('Hour Cron Test')
+@aiocron.crontab('0 * * * *')
+async def cornjob1():
+    await client.get_channel(634765417574957078).send('Hour Cron Test')
 
 
 async def testChannel():
