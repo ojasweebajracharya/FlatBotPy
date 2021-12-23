@@ -7,7 +7,7 @@ import aiocron
 client = discord.Client()
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
 num = 0
-flatBotChannel = client.channels.cache.get("634765417574957078")
+flatBotChannel = client.channel.cache.get("634765417574957078")
 
 
 @client.event
