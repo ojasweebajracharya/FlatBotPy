@@ -55,8 +55,8 @@ async def cornjob1():
 
 @client.event
 def testChannel():
-  channel = client.channels.cache.find(channel => channel.name === "general")
-  channel.send("aaaaaaaaaaaa")
+  channel = client.get_channel(634765417574957078)
+  channel.send('hello')
 
 # client.run(os.environ['TOKEN'])
 
