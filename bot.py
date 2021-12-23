@@ -27,10 +27,11 @@ num = 0
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
+    runBot()
     
 
 def runBot():
-  client.on("ready", printSchedule())
+  client.on("ready", testChannel())
 
 def printSchedule():
   flatBotChannel = client.channels.cache.get("634765417574957078")
@@ -53,10 +54,10 @@ def printSchedule():
 # async def cornjob1():
 #     await flatBotchannel.channel.send('Hour Cron Test')
 
-@client.event
-async def testChannel():
+
+def testChannel():
   channel = client.get_channel(634765417574957078)
-  await channel.send('hello')
+  channel.send('hello')
 
 # client.run(os.environ['TOKEN'])
 
