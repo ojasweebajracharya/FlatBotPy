@@ -1,7 +1,7 @@
 import discord
 import os
 import aiocron
-import python-dotenv
+from dotenv import load_dotenv
 # test
 
 load_dotenv()
