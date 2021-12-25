@@ -31,8 +31,9 @@ async def on_ready():
 
 # def runBot():
 #   client.on("ready", testChannel())
-
+@client.event
 def printSchedule():
+  print(flatBotChannel)
   flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
 
   flatBotChannel.send(flatmates[num+1] + "'s turn to clean the bathroom with the shower (clean shower, wipe all surfaces, mop floor? (vacuum? if the floor is dry?))")
@@ -46,7 +47,7 @@ def printSchedule():
   else:
     num += 1
 
-@aiocron.crontab('15 12 * * mon,wed,sat')
+@aiocron.crontab('30 12 * * mon,wed,sat')
 async def cornjob1():
     await printSchedule()
 
