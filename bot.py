@@ -52,7 +52,7 @@ async def printSchedule():
 
   currentnum = num
 
-@aiocron.crontab('25 14 * * mon,wed,sat')
+@aiocron.crontab('30 14 * * mon,wed,sat')
 async def cornjob1():
     await printSchedule()
 
