@@ -32,18 +32,18 @@ async def on_ready():
 # def runBot():
 #   client.on("ready", testChannel())
 
-def printSchedule():
+async def printSchedule():
   global num
   global flatmates  
   flatBotChannel = client.get_channel(634765417574957078)
   
-  flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
+  await flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
 
-  flatBotChannel.send(flatmates[num+1] + "'s turn to clean the bathroom with the shower (clean shower, wipe all surfaces, mop floor? (vacuum? if the floor is dry?))")
+  await flatBotChannel.send(flatmates[num+1] + "'s turn to clean the bathroom with the shower (clean shower, wipe all surfaces, mop floor? (vacuum? if the floor is dry?))")
 
-  flatBotChannel.send(flatmates[num+2] + "'s turn to clean the smaller bathroom - clean all surfaces, mop floor? vacuum?")
+  await flatBotChannel.send(flatmates[num+2] + "'s turn to clean the smaller bathroom - clean all surfaces, mop floor? vacuum?")
 
-  flatBotChannel.send(flatmates[num+3] + "'s turn to clean the kitchen and sofa areas. This includes vacuuming the floor, mopping, cleaning all surfaces which includes sink, hob, fridge etc.")
+  await flatBotChannel.send(flatmates[num+3] + "'s turn to clean the kitchen and sofa areas. This includes vacuuming the floor, mopping, cleaning all surfaces which includes sink, hob, fridge etc.")
 
   if (num == 3):
     num = 0
