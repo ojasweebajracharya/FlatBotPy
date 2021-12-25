@@ -32,8 +32,7 @@ async def on_ready():
 # def runBot():
 #   client.on("ready", testChannel())
 
-@client.event
-async def printSchedule():
+def printSchedule():
   global num
   global flatmates  
   flatBotChannel = client.get_channel(634765417574957078)
