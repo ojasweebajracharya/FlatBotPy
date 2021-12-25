@@ -32,7 +32,7 @@ async def on_ready():
 # def runBot():
 #   client.on("ready", testChannel())
 @client.event
-def printSchedule():
+async def printSchedule():
   print(flatBotChannel)
   flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
 
