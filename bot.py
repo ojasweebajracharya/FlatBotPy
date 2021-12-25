@@ -1,4 +1,3 @@
-from _typeshed import Self
 import discord
 import os
 import aiocron
@@ -54,7 +53,7 @@ async def printSchedule():
 
   currentnum = num
 
-@aiocron.crontab('15 14 * * mon,wed,sat')
+@aiocron.crontab('20 14 * * mon,wed,sat')
 async def cornjob1():
     await printSchedule()
 
