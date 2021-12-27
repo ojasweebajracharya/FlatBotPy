@@ -46,7 +46,7 @@ async def printSchedule():
 
   num += 1
 
-@aiocron.crontab('*/5 * * * *')
+@aiocron.crontab('0 0 * * tue,thu,sat')
 async def cornjob1():
     await printSchedule()
 
