@@ -51,7 +51,8 @@ async def printSchedule():
 
   results = collection.find({"_id":0})
   num = [result["num"] for result in results]
-  print("num: " + num)
+  print("num")
+  print(num)
 
   flatBotChannel = client.get_channel(634765417574957078)
   
