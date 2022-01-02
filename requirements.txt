@@ -1,3 +1,4 @@
 discord
 aiocron
 python-dotenv
+pymongo

@@ -2,6 +2,19 @@ import discord
 import os
 import aiocron
 from dotenv import load_dotenv
+import pymongo
+from pymongo import MongoClient
+
+# Connecting to MongoDB
+MONGO_URI = os.getenv('MONGO_URI')
+cluster = MongoClient(MONGO_URI)
+db = cluster["discord"]
+collection = db["globalvars"]
+
+post = {"_id":0, "num": 0}
+
+collection.insert_one(post)
+
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
@@ -46,7 +59,7 @@ async def printSchedule():
 
   num += 1
 
-@aiocron.crontab('0 0 * * tue,thu,sat')
+@aiocron.crontab('0 0 * * mon,wed,fri,sun')
 async def cornjob1():
     await printSchedule()
 

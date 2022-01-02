@@ -1,4 +1,6 @@
 # FlatBotPy
 
-To organise cleaning schedulessss :))))
-Maybe link to money tooo?? 
+Created a FlatBot to organise cleaning schedulessss for the flat :))))
+
+Maybe link to money spreadsheet too? Maybe??
+
