@@ -15,7 +15,6 @@ post = {"_id":0, "num": 0}
 
 collection.insert_one(post)
 
-
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 client = discord.Client()
