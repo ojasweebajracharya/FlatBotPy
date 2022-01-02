@@ -11,16 +11,19 @@ cluster = MongoClient(MONGO_URI)
 db = cluster["discord"]
 collection = db["globalvars"]
 
-post = {"_id":0, "num": 0}
+# check if "num" exists in the collection
 
-collection.insert_one(post)
+
+# post = {"_id":0, "num": 0}
+# collection.insert_one(post)
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 client = discord.Client()
-flatBotChannel = client.get_channel(634765417574957078)
-num = 0
 flatmates = ["Simran","Ojaswee","Emily","Fraser"]
+
+def update_num():
+  collection.update_one({"_id":0},{ "$inc": {"num": +1}})
 
 # @client.event
 # async def on_ready():
@@ -44,8 +47,11 @@ async def on_ready():
 #   client.on("ready", testChannel())
 
 async def printSchedule():
-  global num
   global flatmates  
+
+  results = collection.find({"_id":0})
+  num = [result["num"] for result in results]
+  
   flatBotChannel = client.get_channel(634765417574957078)
   
   await flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num % 4] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
@@ -56,9 +62,10 @@ async def printSchedule():
 
   await flatBotChannel.send(flatmates[(num+3) % 4] + "'s turn to clean the kitchen and sofa areas. This includes vacuuming the floor, mopping, cleaning all surfaces which includes sink, hob, fridge etc.")
 
-  num += 1
+  update_num()
 
-@aiocron.crontab('0 0 * * mon,wed,fri,sun')
+# @aiocron.crontab('0 0 * * mon,wed,fri,sun')
+@aiocron.crontab('*/5 * * * *')
 async def cornjob1():
     await printSchedule()
 
