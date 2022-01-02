@@ -51,7 +51,8 @@ async def printSchedule():
 
   results = collection.find({"_id":0})
   num = [result["num"] for result in results]
-  
+  print("num: " + num)
+
   flatBotChannel = client.get_channel(634765417574957078)
   
   await flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num % 4] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
@@ -65,7 +66,7 @@ async def printSchedule():
   update_num()
 
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
-@aiocron.crontab('*/5 * * * *')
+@aiocron.crontab('*/1 * * * *')
 async def cornjob1():
     await printSchedule()
 
