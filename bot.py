@@ -20,7 +20,7 @@ collection = db["globalvars"]
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 client = discord.Client()
-flatmates = ["Simran","Ojaswee","Emily","Fraser"]
+flatmates = ["Emily","Fraser","Simran","Ojaswee"]
 
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
@@ -53,7 +53,7 @@ async def printSchedule():
   numArr = [result["num"] for result in results]
   num = numArr[0]
 
-  flatBotChannel = client.get_channel(634765417574957078)
+  flatBotChannel = client.get_channel(895388658885095465)
   
   await flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num % 4] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
 
