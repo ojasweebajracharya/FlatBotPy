@@ -25,11 +25,8 @@ flatmates = ["Emily","Simran","Ojaswee"]
 async def mentioning_User():
   flatBotChannel = client.get_channel(634765417574957078)
   print(client.users)
-  user = discord.utils.get(client.users, name="waterbottle", discriminator=8767)
-  if user is None:
-      print("User not found")
-  else:
-      await flatBotChannel.send(f"{user.mention} is the best")
+  user = "571276422363217951"
+  await flatBotChannel.send(f"<@{user}> is the best")
 
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
