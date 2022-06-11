@@ -24,7 +24,7 @@ flatmates = ["Emily","Simran","Ojaswee"]
 
 async def mentioning_User():
   flatBotChannel = client.get_channel(634765417574957078)
-  user = discord.utils.get(client.users, name="waterbottle", discriminator="8767")
+  user = discord.utils.get(client.users, name="waterbottle", discriminator=8767)
   if user is None:
       print("User not found")
   else:
