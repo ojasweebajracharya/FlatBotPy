@@ -20,7 +20,7 @@ collection = db["globalvars"]
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 client = discord.Client()
-flatmates = ["Emily","Fraser","Simran","Ojaswee"]
+flatmates = ["Emily","Simran","Ojaswee"]
 
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
@@ -53,15 +53,13 @@ async def printSchedule():
   numArr = [result["num"] for result in results]
   num = numArr[0]
 
-  flatBotChannel = client.get_channel(895388658885095465)
+  flatBotChannel = client.get_channel(981536894867345418)
   
-  await flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num % 4] + "'s turn to take out the kitchen bins and vacuum the corridor and mop (if needed). ")
+  await flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num % 3] + "'s turn to take out the kitchen bins and vacuum/broom the corridor & floors.")
 
-  await flatBotChannel.send(flatmates[(num+1) % 4] + "'s turn to clean the bathroom with the shower (clean shower, wipe all surfaces, mop floor? (vacuum? if the floor is dry?))")
+  await flatBotChannel.send(flatmates[(num+1) % 3] + "'s turn to clean the toilet and shower - wipe down surfaces, clean the shower :)) ")
 
-  await flatBotChannel.send(flatmates[(num+2) % 4] + "'s turn to clean the smaller bathroom - clean all surfaces, mop floor? vacuum?")
-
-  await flatBotChannel.send(flatmates[(num+3) % 4] + "'s turn to clean the kitchen and sofa areas. This includes vacuuming the floor, mopping, cleaning all surfaces which includes sink, hob, fridge etc.")
+  await flatBotChannel.send(flatmates[(num+2) % 3] + "'s turn to clean the kitchen. This includes cleaning the surfaces, the hob, the microwave (inside too), the fridge (inside as well).")
 
   update_num()
 
