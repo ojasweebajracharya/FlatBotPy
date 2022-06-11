@@ -22,13 +22,13 @@ TOKEN = os.getenv('TOKEN')
 client = discord.Client()
 flatmates = ["Emily","Simran","Ojaswee"]
 
-@client.event
-async def mentioning_User(message):
+async def mentioning_User():
+  flatBotChannel = client.get_channel(634765417574957078)
   user = discord.utils.get(client.users, name="waterbottle", discriminator="8767")
   if user is None:
       print("User not found")
   else:
-      await message.channel.send(f"{user.mention} is the best")
+      await flatBotChannel.send(f"{user.mention} is the best")
 
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
@@ -49,6 +49,8 @@ def update_num():
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
+    mentioning_User()
+
     
 
 # def runBot():
