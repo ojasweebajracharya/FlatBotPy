@@ -49,7 +49,7 @@ def update_num():
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
-    mentioning_User()
+    await mentioning_User()
 
     
 
