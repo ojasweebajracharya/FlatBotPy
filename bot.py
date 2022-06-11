@@ -53,7 +53,7 @@ async def printSchedule():
   numArr = [result["num"] for result in results]
   num = numArr[0]
 
-  flatBotChannel = client.get_channel(981536894867345418)
+  flatBotChannel = client.get_channel(634765417574957078)
   
   await flatBotChannel.send("Hiiiii! This week it is "+ flatmates[num % 3] + "'s turn to take out the kitchen bins and vacuum/broom the corridor & floors.")
 
