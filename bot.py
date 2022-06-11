@@ -22,6 +22,14 @@ TOKEN = os.getenv('TOKEN')
 client = discord.Client()
 flatmates = ["Emily","Simran","Ojaswee"]
 
+@client.event
+async def mentioning_User(message):
+  user = discord.utils.get(client.users, name="waterbottle", discriminator="8767")
+  if user is None:
+      print("User not found")
+  else:
+      await message.channel.send(f"{user.mention} is the best")
+
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
 
