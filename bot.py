@@ -25,13 +25,13 @@ em_id = "238389040187965441"
 sim_id = "719261320662351950"
 flatmates_ids = [em_id, sim_id, oj_id]
 
-async def mentioning_User():
-  flatBotChannel = client.get_channel(634765417574957078)
-  print(client.users)
-  oj_id = "571276422363217951"
-  em_id = "238389040187965441"
-  sim_id = "719261320662351950"
-  await flatBotChannel.send(f"<@{oj_id}> is the best")
+# async def mentioning_User():
+#   flatBotChannel = client.get_channel(634765417574957078)
+#   print(client.users)
+#   oj_id = "571276422363217951"
+#   em_id = "238389040187965441"
+#   sim_id = "719261320662351950"
+#   await flatBotChannel.send(f"<@{oj_id}> is the best")
 
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
@@ -52,7 +52,6 @@ def update_num():
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
-    await mentioning_User()
 
     
 
@@ -69,11 +68,11 @@ async def printSchedule():
 
   flatBotChannel = client.get_channel(634765417574957078)
   
-  await flatBotChannel.send(f"Hiiiii! This week it is <@{flatmates_ids[num % 3]}>'s turn to take out the kitchen bins and vacuum/broom the corridor & floors.")
+  await flatBotChannel.send(f"Hiiiii! This week it is <@{flatmates_ids[num % 3]}>'s turn to take out the kitchen bins and vacuum/broom the hall")
 
-  await flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the shower :)) ")
+  await flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the floor, clean the shower :)) ")
 
-  await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, the hob, the microwave (inside too), the fridge (inside as well).")
+  await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
 
   update_num()
 
