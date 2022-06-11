@@ -81,7 +81,6 @@ async def cornjob1():
     await printSchedule()
 
 
-
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
 # @aiocron.crontab('0 0 * * mon')
 # async def cornjob1():
