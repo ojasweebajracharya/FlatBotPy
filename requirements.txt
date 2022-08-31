@@ -3,3 +3,4 @@ aiocron
 python-dotenv
 pymongo
 dnspython
+google-cloud
