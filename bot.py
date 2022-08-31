@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import pymongo
 from pymongo import MongoClient
 import logging
-from discord.ext import commands
 
 logging.basicConfig(level=logging.INFO)
 
@@ -22,7 +21,7 @@ collection = db["globalvars"]
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = discord.Client(intents=discord.Intents.default())
+client = discord.Client()
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
 sim_id = "719261320662351950"
@@ -30,12 +29,6 @@ flatmates_ids = [em_id, sim_id, oj_id]
 
 spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
 sheet_id = 0
-
-bot = commands.Bot(command_prefix='$')
-
-@bot.command()
-async def test(ctx, arg):
-    await ctx.send(arg)
 
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
