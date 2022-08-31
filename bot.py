@@ -22,7 +22,7 @@ collection = db["globalvars"]
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = discord.Client()
+client = discord.Client(intents=discord.Intents.default())
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
 sim_id = "719261320662351950"
