@@ -31,8 +31,10 @@ flatmates_ids = [em_id, sim_id, oj_id]
 spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
 sheet_id = 0
 
+bot = commands.Bot(command_prefix='$')
+
 @bot.command()
-async def foo(ctx, arg):
+async def test(ctx, arg):
     await ctx.send(arg)
 
 def update_num():
