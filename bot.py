@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import pymongo
 from pymongo import MongoClient
 import logging
+import gspread
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,6 +30,17 @@ flatmates_ids = [em_id, sim_id, oj_id]
 
 spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
 sheet_id = 0
+sa = gspread.service_account(filename="service_account.json")
+sh = sa.open("Money")
+wks = sh.worksheet("Monthly")
+
+def readFinalBalances():
+  global wks
+  print(wks.acell('Y3:Z3').value)
+  print(wks.acell('Y4:Z4').value)
+  print(f"{wks.acell('Y5').value} {wks.acell('Z5').value}")
+  print(f"{wks.acell('Y6').value} {wks.acell('Z6').value}")
+
 
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
@@ -39,12 +51,12 @@ def update_num():
 
 
 # test
-# @client.event
-# async def on_message(message):
-#     if message.author.bot:
-#         return
-#     else:
-#         await message.channel.send("Hello there!")
+@client.event
+async def on_message(message):
+    if message.author.bot:
+        return
+    else:
+        await message.channel.send("Hello there!")
 
 @client.event
 async def on_ready():
