@@ -21,9 +21,13 @@ collection = db["globalvars"]
 # post = {"_id":0, "num": 0}
 # collection.insert_one(post)
 
+
+intents = discord.Intents.default()
+intents.message_content = True
+
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = discord.Client()
+client = discord.Client(intents=intents)
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
 sim_id = "719261320662351950"
