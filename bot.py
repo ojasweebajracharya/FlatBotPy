@@ -34,12 +34,6 @@ em_id = "238389040187965441"
 sim_id = "719261320662351950"
 flatmates_ids = [em_id, sim_id, oj_id]
 
-spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
-sheet_id = 0
-sa = gspread.service_account(filename = 'service_account.json')
-sh = sa.open("Money")
-wks = sh.worksheet("Monthly")
-
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
 
@@ -54,28 +48,38 @@ async def ping(ctx):
 # test
 @client.command()
 async def money(ctx, *, person = None):
-    global wks
-    em_message = f"""{wks.acell('Y4:Z4').value} \n {wks.acell('Y5').value} {wks.acell('Z5').value} \n {wks.acell('Y6').value} {wks.acell('Z6').value} """
-    sim_message = f"""{wks.acell('Y8:Z8').value} \n {wks.acell('Y9').value} {wks.acell('Z9').value} \n {wks.acell('Y10').value} {wks.acell('Z10').value}"""
-    oj_message = f"""{wks.acell('Y12:Z12').value} \n {wks.acell('Y13').value} {wks.acell('Z13').value} \n {wks.acell('Y14').value} {wks.acell('Z14').value}"""
-  
-    await ctx.send("Hello there!")
-    if person == None: 
-        await ctx.send(em_message)
-        await ctx.send(oj_message)
-        await ctx.send(sim_message)
-    else:
+    if person != None:
       person = person.lower()
-    
-      if person == "emily":
-        await ctx.send(em_message)
-      elif person == "ojaswee":
-        await ctx.send(oj_message)
-      elif person == "simran":
-        await ctx.send(sim_message)
-      else:
+
+      # if statements are in this order so if someone puts lots of random names, it doesn't time out too quickly.
+      # i doubt we will put our own names that many times in a minute so i think this will be fine. 
+      if person != "emily" or person != "simran" or person != "ojaswee":
         await ctx.send("Who is that?? Please try again :weary: ")
-    
+
+      else:
+        em_message = f"""{wks.acell('Y4:Z4').value} \n {wks.acell('Y5').value} {wks.acell('Z5').value} \n {wks.acell('Y6').value} {wks.acell('Z6').value} """
+        sim_message = f"""{wks.acell('Y8:Z8').value} \n {wks.acell('Y9').value} {wks.acell('Z9').value} \n {wks.acell('Y10').value} {wks.acell('Z10').value}"""
+        oj_message = f"""{wks.acell('Y12:Z12').value} \n {wks.acell('Y13').value} {wks.acell('Z13').value} \n {wks.acell('Y14').value} {wks.acell('Z14').value}"""
+      
+        await ctx.send("Hello there!")
+        spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
+        sheet_id = 0
+        sa = gspread.service_account(filename = 'service_account.json')
+        sh = sa.open("Money")
+        wks = sh.worksheet("Monthly")
+      
+        if person == "emily":
+          await ctx.send(em_message)
+        elif person == "ojaswee":
+          await ctx.send(oj_message)
+        elif person == "simran":
+          await ctx.send(sim_message)
+
+    else: 
+        await ctx.send(em_message)
+        await ctx.send(oj_message)
+        await ctx.send(sim_message)
+
 
 @client.event
 async def on_ready():
