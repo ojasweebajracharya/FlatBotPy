@@ -57,9 +57,9 @@ async def money(ctx, *, person = None):
         await ctx.send("Who is that?? Please try again :weary: ")
 
       else:
-        em_message = f"""**{wks.acell('Y4:Z4').value}** \n {wks.acell('Y5').value} {wks.acell('Z5').value} \n {wks.acell('Y6').value} {wks.acell('Z6').value} """
-        sim_message = f"""**{wks.acell('Y8:Z8').value}** \n {wks.acell('Y9').value} {wks.acell('Z9').value} \n {wks.acell('Y10').value} {wks.acell('Z10').value}"""
-        oj_message = f"""**{wks.acell('Y12:Z12').value}** \n {wks.acell('Y13').value} {wks.acell('Z13').value} \n {wks.acell('Y14').value} {wks.acell('Z14').value}"""
+        em_message = f"""**{wks.acell('Y4:Z4').value}** \n{wks.acell('Y5').value} {wks.acell('Z5').value} \n{wks.acell('Y6').value} {wks.acell('Z6').value} \n"""
+        sim_message = f"""**{wks.acell('Y8:Z8').value}** \n{wks.acell('Y9').value} {wks.acell('Z9').value} \n{wks.acell('Y10').value} {wks.acell('Z10').value} \n"""
+        oj_message = f"""**{wks.acell('Y12:Z12').value}** \n{wks.acell('Y13').value} {wks.acell('Z13').value} \n{wks.acell('Y14').value} {wks.acell('Z14').value} \n"""
       
         await ctx.send("Hello there!")
         spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
