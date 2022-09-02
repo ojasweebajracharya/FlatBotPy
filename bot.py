@@ -1,3 +1,4 @@
+import json
 import discord
 from discord.ext import commands
 import os
@@ -15,13 +16,11 @@ MONGO_URI = os.getenv('MONGO_URI')
 cluster = MongoClient(MONGO_URI)
 db = cluster["discord"]
 collection = db["globalvars"]
-service_account = os.getenv('SERVICE_ACCOUNT')
 
 # check if "num" exists in the collection
 
 # post = {"_id":0, "num": 0}
 # collection.insert_one(post)
-
 
 intents = discord.Intents.default()
 intents.message_content = True
