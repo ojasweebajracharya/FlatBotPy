@@ -37,7 +37,7 @@ flatmates_ids = [em_id, sim_id, oj_id]
 
 spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
 sheet_id = 0
-sa = gspread.service_account(service_account)
+sa = gspread.service_account(filename = 'service_account.json')
 sh = sa.open("Money")
 wks = sh.worksheet("Monthly")
 
