@@ -49,7 +49,7 @@ def update_num():
 
 @client.command()
 async def ping(ctx):
-  await ctx.send('Pong!')
+  await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
 
 # test
 # @client.command()
