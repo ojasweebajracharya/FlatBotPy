@@ -60,20 +60,21 @@ async def money(ctx, *, person = None):
     oj_message = f"""{wks.acell('Y12:Z12').value} \n {wks.acell('Y13').value} {wks.acell('Z13').value} \n {wks.acell('Y14').value} {wks.acell('Z14').value}"""
   
     await ctx.send("Hello there!")
-    person = person.lower()
-    
-    if person == "emily":
-      await ctx.send(em_message)
-    elif person == "ojaswee":
-      await ctx.send(oj_message)
-    elif person == "simran":
-      await ctx.send(sim_message)
-    elif person == None:
-      await ctx.send(em_message)
-      await ctx.send(oj_message)
-      await ctx.send(sim_message)
+    if person == None: 
+        await ctx.send(em_message)
+        await ctx.send(oj_message)
+        await ctx.send(sim_message)
     else:
-      await ctx.send("Who is that?? Please try again :weary: ")
+      person = person.lower()
+    
+      if person == "emily":
+        await ctx.send(em_message)
+      elif person == "ojaswee":
+        await ctx.send(oj_message)
+      elif person == "simran":
+        await ctx.send(sim_message)
+      else:
+        await ctx.send("Who is that?? Please try again :weary: ")
     
 
 @client.event
