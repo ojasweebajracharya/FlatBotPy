@@ -53,7 +53,7 @@ async def money(ctx, *, person = None):
 
     # if statements are in this order so if someone puts lots of random names, it doesn't time out too quickly.
     # i doubt we will put our own names that many times in a minute so i think this will be fine. 
-    if person != "emily" or person != "simran" or person != "ojaswee":
+    if person != "emily" or person != "simran" or person != "ojaswee" or person != None:
       await ctx.send("Who is that?? Please try again :weary: ")
 
     else:
