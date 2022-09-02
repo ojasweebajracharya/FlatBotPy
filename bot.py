@@ -15,6 +15,7 @@ MONGO_URI = os.getenv('MONGO_URI')
 cluster = MongoClient(MONGO_URI)
 db = cluster["discord"]
 collection = db["globalvars"]
+service_account = os.getenv('SERVICE_ACCOUNT')
 
 # check if "num" exists in the collection
 
@@ -36,7 +37,7 @@ flatmates_ids = [em_id, sim_id, oj_id]
 
 spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
 sheet_id = 0
-sa = gspread.service_account(filename="service_account.json")
+sa = gspread.service_account(service_account)
 sh = sa.open("Money")
 wks = sh.worksheet("Monthly")
 
