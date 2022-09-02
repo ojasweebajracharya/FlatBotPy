@@ -53,14 +53,17 @@ async def ping(ctx):
 
 # test
 @client.command()
-async def money(ctx):
+async def money(ctx, *, person):
     global wks
-
+  
     await ctx.send("Hello there!")
-    await ctx.send(wks.acell('Y3:Z3').value)
-    await ctx.send(wks.acell('Y4:Z4').value)
-    await ctx.send(f"{wks.acell('Y5').value} {wks.acell('Z5').value}")
-    await ctx.send(f"{wks.acell('Y6').value} {wks.acell('Z6').value}")
+    person = person.lower()
+    
+    if person == "emily":
+      await ctx.send(wks.acell('Y3:Z3').value)
+      await ctx.send(wks.acell('Y4:Z4').value)
+      await ctx.send(f"{wks.acell('Y5').value} {wks.acell('Z5').value}")
+      await ctx.send(f"{wks.acell('Y6').value} {wks.acell('Z6').value}")
 
 @client.event
 async def on_ready():
