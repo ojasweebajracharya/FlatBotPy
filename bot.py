@@ -28,7 +28,7 @@ intents.message_content = True
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = commands.Bot(command_prefix = '@', intents=intents)
+client = commands.Bot(command_prefix = '!', intents=intents)
 # client = discord.Client(intents=intents)
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
