@@ -53,7 +53,7 @@ async def ping(ctx):
 
 # test
 @client.command()
-async def money(ctx):
+async def money(ctx, message):
     global wks
     await message.channel.send("Hello there!")
     await message.channel.send(wks.acell('Y3:Z3').value)
@@ -64,11 +64,9 @@ async def money(ctx):
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
-
     
 # def runBot():
 #   client.on("ready", testChannel())
-
 
 async def printSchedule():
   global flatmates_ids  
