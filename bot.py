@@ -53,20 +53,23 @@ async def ping(ctx):
 
 # test
 @client.command()
-async def money(ctx, message):
+async def money(ctx):
     global wks
-    await message.channel.send("Hello there!")
-    await message.channel.send(wks.acell('Y3:Z3').value)
-    await message.channel.send(wks.acell('Y4:Z4').value)
-    await message.channel.send(f"{wks.acell('Y5').value} {wks.acell('Z5').value}")
-    await message.channel.send(f"{wks.acell('Y6').value} {wks.acell('Z6').value}")
+
+    await ctx.send("Hello there!")
+    await ctx.send(wks.acell('Y3:Z3').value)
+    await ctx.send(wks.acell('Y4:Z4').value)
+    await ctx.send(f"{wks.acell('Y5').value} {wks.acell('Z5').value}")
+    await ctx.send(f"{wks.acell('Y6').value} {wks.acell('Z6').value}")
 
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
+
     
 # def runBot():
 #   client.on("ready", testChannel())
+
 
 async def printSchedule():
   global flatmates_ids  
