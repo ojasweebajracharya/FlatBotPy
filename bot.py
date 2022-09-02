@@ -63,19 +63,21 @@ async def money(ctx, *, person = None):
     await ctx.send(em_message)
     await ctx.send(oj_message)
     await ctx.send(sim_message)
-
-  elif person == "emily":
-    await ctx.send(em_message)
-  
-  elif person == "simran":
-    await ctx.send(sim_message)
-
-  elif person == "ojaswee":
-    await ctx.send(oj_message)
   
   else:
-    await ctx.send("Who is that?? Please try again :weary: ")
+    person = person.lower()
+
+    if person == "emily":
+      await ctx.send(em_message)
     
+    elif person == "simran":
+      await ctx.send(sim_message)
+
+    elif person == "ojaswee":
+      await ctx.send(oj_message)
+    
+    else:
+      await ctx.send("Who is that?? Please try again :weary: ")
 
 @client.event
 async def on_ready():
