@@ -22,12 +22,12 @@ collection = db["globalvars"]
 # collection.insert_one(post)
 
 
-# intents = discord.Intents.default()
-# intents.message_content = True
+intents = discord.Intents.default()
+intents.message_content = True
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = commands.Bot(command_prefix = '.')
+client = commands.Bot(command_prefix = '.', intents=intents)
 # client = discord.Client(intents=intents)
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
@@ -86,6 +86,7 @@ async def printSchedule():
   await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
 
   update_num()
+
 
 @aiocron.crontab('0 0 * * mon')
 async def cornjob1():
