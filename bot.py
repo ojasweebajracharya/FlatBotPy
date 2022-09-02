@@ -48,13 +48,18 @@ async def ping(ctx):
 # test
 @client.command()
 async def money(ctx, *, person = None):
-
+    print("Hey 1")
     if person != None:
+      print("Hey 2")
       person = person.lower()
 
+    print("Hey 3")
+   
     # if statements are in this order so if someone puts lots of random names, it doesn't time out too quickly.
     # i doubt we will put our own names that many times in a minute so i think this will be fine. 
     if person != "emily" or person != "simran" or person != "ojaswee" or person != None:
+      print("hey 4")
+      
       await ctx.send("Who is that?? Please try again :weary: ")
 
     else:
