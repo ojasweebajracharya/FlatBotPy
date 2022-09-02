@@ -1,4 +1,5 @@
 import discord
+from discord.ext import commands
 import os
 import aiocron
 from dotenv import load_dotenv
@@ -21,12 +22,13 @@ collection = db["globalvars"]
 # collection.insert_one(post)
 
 
-intents = discord.Intents.default()
-intents.message_content = True
+# intents = discord.Intents.default()
+# intents.message_content = True
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = discord.Client(intents=intents)
+client = commands.Bot(command_prefix = '.')
+# client = discord.Client(intents=intents)
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
 sim_id = "719261320662351950"
