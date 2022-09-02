@@ -49,7 +49,8 @@ async def ping(ctx):
 @client.command()
 async def money(ctx, *, person = None):
 
-    person = person.lower()
+    if person != None:
+      person = person.lower()
 
     # if statements are in this order so if someone puts lots of random names, it doesn't time out too quickly.
     # i doubt we will put our own names that many times in a minute so i think this will be fine. 
