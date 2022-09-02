@@ -55,17 +55,26 @@ async def ping(ctx):
 @client.command()
 async def money(ctx, *, person):
     global wks
-    emily_message = f"""{wks.acell('Y3:Z3').value} \n 
-                        {wks.acell('Y4:Z4').value} \n
-                        {wks.acell('Y5').value} {wks.acell('Z5').value} \n
-                        {wks.acell('Y6').value} {wks.acell('Z6').value} """
-
-    
+    em_message = f"""{wks.acell('Y3:Z3').value} \n {wks.acell('Y5').value} {wks.acell('Z5').value} \n {wks.acell('Y6').value} {wks.acell('Z6').value} """
+    sim_message = f"""{wks.acell('Y8:Z8').value} \n {wks.acell('Y9').value} {wks.acell('Z9').value} \n {wks.acell('Y10').value} {wks.acell('Z10').value}"""
+    oj_message = f"""{wks.acell('Y12:Z12').value} \n {wks.acell('Y13').value} {wks.acell('Z13').value} \n {wks.acell('Y14').value} {wks.acell('Z14').value}"""
+  
     await ctx.send("Hello there!")
     person = person.lower()
     
     if person == "emily":
-      await ctx.send(emily_message)
+      await ctx.send(em_message)
+    elif person == "ojaswee":
+      await ctx.send(oj_message)
+    elif person == "simran":
+      await ctx.send(sim_message)
+    elif person == None:
+      await ctx.send(em_message)
+      await ctx.send(oj_message)
+      await ctx.send(sim_message)
+    else:
+      await ctx.send("Who is that?? Please try again :weary: ")
+    
 
 @client.event
 async def on_ready():
