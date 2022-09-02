@@ -49,17 +49,17 @@ def update_num():
 
 
 # test
-@client.event
-async def on_message(message):
-    global wks
-    if message.author.bot:
-        return
-    else:
-        await message.channel.send("Hello there!")
-        await message.channel.send(wks.acell('Y3:Z3').value)
-        await message.channel.send(wks.acell('Y4:Z4').value)
-        await message.channel.send(f"{wks.acell('Y5').value} {wks.acell('Z5').value}")
-        await message.channel.send(f"{wks.acell('Y6').value} {wks.acell('Z6').value}")
+# @client.event
+# async def on_message(message):
+#     global wks
+#     if message.author.bot:
+#         return
+#     else:
+#         await message.channel.send("Hello there!")
+#         await message.channel.send(wks.acell('Y3:Z3').value)
+#         await message.channel.send(wks.acell('Y4:Z4').value)
+#         await message.channel.send(f"{wks.acell('Y5').value} {wks.acell('Z5').value}")
+#         await message.channel.send(f"{wks.acell('Y6').value} {wks.acell('Z6').value}")
 
 @client.event
 async def on_ready():
@@ -95,6 +95,7 @@ async def cornjob1():
 # async def printPaymentDue():
   # read from google sheets and print at the first of every month
   
+
 
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
 # @aiocron.crontab('0 0 * * mon')
