@@ -60,8 +60,9 @@ async def money(ctx, *, person = None):
 
         await ctx.send("Hello there!")
 
-        spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
-        sheet_id = 0
+        # spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
+        # sheet_id = 0
+
         sa = gspread.service_account(filename = 'service_account.json')
         sh = sa.open("Money")
         wks = sh.worksheet("Monthly")
