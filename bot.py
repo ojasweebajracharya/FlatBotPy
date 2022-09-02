@@ -47,10 +47,13 @@ def update_num():
 # async def on_ready():
 #     print("Bot is ready!")
 
+@client.command()
+async def ping(ctx):
+  await ctx.send('Pong!')
 
 # test
-# @client.event
-# async def on_message(message):
+# @client.command()
+# async def money(ctx, message):
 #     global wks
 #     if message.author.bot:
 #         return
@@ -99,8 +102,8 @@ async def cornjob1():
 
 
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
-# @aiocron.crontab('0 0 * * mon')
-# async def cornjob1():
-#     await printSchedule()
+@aiocron.crontab('0 0 * * mon')
+async def cornjob1():
+    await printSchedule()
 
 client.run(TOKEN)
