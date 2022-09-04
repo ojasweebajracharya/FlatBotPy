@@ -1,3 +1,4 @@
+from ast import alias
 import json
 import discord
 from discord.ext import commands
@@ -22,6 +23,7 @@ collection = db["globalvars"]
 # post = {"_id":0, "num": 0}
 # collection.insert_one(post)
 
+# needed for it to work, Why?? Should probably check at some point?
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -37,6 +39,8 @@ flatmates_ids = [em_id, sim_id, oj_id]
 sa = gspread.service_account(filename = 'service_account.json')
 sh = sa.open("Money")
 wks = sh.worksheet("Monthly")
+spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
+sheet_id = 0
 
 # updates the mongo db database, increases number for the rota 
 def update_num():
@@ -52,11 +56,9 @@ async def on_ready():
 async def ping(ctx):
   await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
 
-# test
+# displays balance
 @client.command()
 async def money(ctx, *, person = None):
-  # spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
-  # sheet_id = 0
 
   em_message = f"""**{wks.acell('Y4:Z4').value}** \n{wks.acell('Y5').value} {wks.acell('Z5').value} \n{wks.acell('Y6').value} {wks.acell('Z6').value} \n"""
   sim_message = f"""**{wks.acell('Y8:Z8').value}** \n{wks.acell('Y9').value} {wks.acell('Z9').value} \n{wks.acell('Y10').value} {wks.acell('Z10').value} \n"""
@@ -81,6 +83,38 @@ async def money(ctx, *, person = None):
     
     else:
       await ctx.send("Who is that?? Please try again :weary: ")
+
+# updates people and communal (person = communal if it was communal)
+@client.command(aliases=['money-update', 'money update', 'moneyupdate'])
+async def moneyupdate(ctx, *, item = None, amount = None, person = None):
+
+  if item == None:
+    await ctx.send("You didn't include an item :( Please try again :smile: ")
+
+  if amount == None:
+    await ctx.send("How much does it cost? Please try again and add a cost :smile: ")
+
+  if person == None:
+    await ctx.send("You didn't include a person :( Please try again :smile: ")
+  
+  else:
+    person = person.lower()
+
+    if person == "emily":
+      # so item and then the person who sent the message 
+      wks.update("A4:C4", [item, 'Ojaswee', amount])
+      # then this bit updates the amount, person and yes/no
+      wks.update("D4:E4", [amount, 'No'])
+      
+    elif person == "simran":
+      pass
+    elif person == "ojaswee":
+      pass
+    elif person == "communal":
+      pass
+    else:
+      await ctx.send("Who is that?? Please try again :weary: ")
+
 
     
 # def runBot():
