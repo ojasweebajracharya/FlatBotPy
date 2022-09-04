@@ -103,7 +103,7 @@ async def money(ctx, *, person = None):
 
 # updates people and communal (person = communal if it was communal)
 @client.command(aliases=['money-update'])
-async def moneyupdate(message, ctx, *args):
+async def moneyupdate(ctx, *args):
 
   item = args[0]
   amount = args[1]
@@ -119,11 +119,11 @@ async def moneyupdate(message, ctx, *args):
   else:
     person = person.lower()
 
-    if get_person(message.author.id) == "Other":
+    if get_person(ctx.author.id) == "Other":
       await ctx.send("Who are you? I don't think you're part of this flat...")
       return
     else:
-      current_person = get_person(message.author.id)
+      current_person = get_person(ctx.author.id)
 
     if person == "communal":
       communal_row_number = get_next_free_row_number("N")
