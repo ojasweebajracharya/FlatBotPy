@@ -110,9 +110,9 @@ async def moneyupdate(ctx, *args):
 
     if person == "emily":
       # so item and then the person who sent the message 
-      wks.update("A4:C4", [['soup', 'Ojaswee', '2.25']])
+      wks.update("A4:C4", [[item, 'Ojaswee', amount]])
       # then this bit updates the amount, person and yes/no
-      wks.update("D4:E4", [['2.25', 'No']])
+      wks.update("D4:E4", [[amount, 'No']])
 
       await ctx.send(f"I've added Emily owes Ojaswee £{amount} for {item}")
 
