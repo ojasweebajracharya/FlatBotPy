@@ -46,6 +46,23 @@ sheet_id = 0
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
 
+def get_person(person_id):
+  if person_id == oj_id:
+    return "Ojaswee"
+  elif person_id == em_id:
+    return "Emily"
+  elif person_id == sim_id:
+    return "Simran"
+  else:
+    return "Other"
+
+def get_next_free_row_number(starting_letter):
+  for i in range(4, 100):
+    if wks.acell(f"{starting_letter}{i}") == "":
+      return i
+  
+  return 0
+
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
@@ -86,51 +103,60 @@ async def money(ctx, *, person = None):
 
 # updates people and communal (person = communal if it was communal)
 @client.command(aliases=['money-update'])
-async def moneyupdate(ctx, *args):
-  # arguments = ', '.join(args)
-  # await ctx.send(f'{len(args)} arguments: {arguments}')
+async def moneyupdate(ctx, *args, message):
 
   item = args[0]
   amount = args[1]
   person = args[2]
 
-  # await ctx.send(f"{item}, {amount}, {person}")
+  row_number = get_next_free_row_number("A")
+  if row_number == 0:
+    await ctx.send("Errr Emily?? I think the sheet is full :sweat_smile: ")
 
-  if item == None:
-    await ctx.send("You didn't include an item :(")
+  if item == None or person == None or amount == None:
+    await ctx.send("Your format is incorrect. It should be: money-update {item} {amount} {person}")
 
-  if amount == None:
-    await ctx.send("How much does it cost?")
-
-  if person == None:
-    await ctx.send("You didn't include a person :( Please try again :smile: ")
-  
   else:
     person = person.lower()
 
-    if person == "emily":
-      # so item and then the person who sent the message 
-      wks.update("A4:C4", [[item, 'Ojaswee', float(amount)]])
-      # then this bit updates the amount, person and yes/no
-      wks.update("D4:E4", [[float(amount), 'No']])
-
-      await ctx.send(f"I've added Emily owes Ojaswee £{amount} for {item}")
-
-    elif person == "simran":
-      pass
-    elif person == "ojaswee":
-      pass
-    elif person == "communal":
-      pass
+    if get_person(message.author.id) == "Other":
+      await ctx.send("Who are you? I don't think you're part of this flat...")
+      return
     else:
-      await ctx.send(f"Who is {person}?? Please try again :weary: ")
+      current_person = get_person(message.author.id)
+
+    if person == "communal":
+      communal_row_number = get_next_free_row_number("N")
+      if communal_row_number == 0:
+        await ctx.send("Errr Emily?? I think the sheet is full :sweat_smile: ")
+
+      wks.update(f"N{communal_row_number}:P{communal_row_number}", [[item, current_person, float(amount)]])
+
+    else:
+      # item and the person who sent the message 
+      wks.update(f"A{row_number}:C{row_number}", [[item, current_person, float(amount)]])
+
+      if person == "emily":
+        # updates the amount, person and yes/no
+        wks.update(f"D{row_number}:E{row_number}", [[float(amount), 'No']])
+        await ctx.send(f"I've added Emily owes {current_person} £{amount} for {item}")
+
+      elif person == "simran":
+        wks.update(f"F{row_number}:G{row_number}", [[float(amount), 'No']])
+        await ctx.send(f"I've added Simran owes {current_person} £{amount} for {item}")
+
+      elif person == "ojaswee":
+        wks.update(f"H{row_number}:I{row_number}", [[float(amount), 'No']])
+        await ctx.send(f"I've added Ojaswee owes {current_person} £{amount} for {item}")
+
+      else:
+        await ctx.send(f"Who is {person}?? Please try again :weary: ")
 
 
-    
 # def runBot():
 #   client.on("ready", testChannel())
 
-
+# cleaning schedule 
 async def printSchedule():
   global flatmates_ids  
 
@@ -148,16 +174,11 @@ async def printSchedule():
 
   update_num()
 
+# CRON FUNCTIONS ------------------------------------------
 
 @aiocron.crontab('0 0 * * mon')
 async def cornjob1():
     await printSchedule()
-
-
-# async def printPaymentDue():
-  # read from google sheets and print at the first of every month
-  
-
 
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
 @aiocron.crontab('0 0 * * mon')
