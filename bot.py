@@ -106,6 +106,8 @@ async def moneyupdate(ctx, *, item = None, amount = None, person = None):
       # then this bit updates the amount, person and yes/no
       wks.update("D4:E4", [amount, 'No'])
 
+      await ctx.send(f"I've added Emily owes Ojaswee £{amount} for {item}")
+
     elif person == "simran":
       pass
     elif person == "ojaswee":
