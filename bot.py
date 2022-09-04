@@ -85,7 +85,7 @@ async def money(ctx, *, person = None):
       await ctx.send("Who is that?? Please try again :weary: ")
 
 # updates people and communal (person = communal if it was communal)
-@client.command(aliases=['money-update', 'money update', 'moneyupdate'])
+@client.command(aliases=['money-update', 'money update'])
 async def moneyupdate(ctx, *, item = None, amount = None, person = None):
 
   if item == None:
@@ -105,7 +105,7 @@ async def moneyupdate(ctx, *, item = None, amount = None, person = None):
       wks.update("A4:C4", [item, 'Ojaswee', amount])
       # then this bit updates the amount, person and yes/no
       wks.update("D4:E4", [amount, 'No'])
-      
+
     elif person == "simran":
       pass
     elif person == "ojaswee":
