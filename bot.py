@@ -34,12 +34,19 @@ em_id = "238389040187965441"
 sim_id = "719261320662351950"
 flatmates_ids = [em_id, sim_id, oj_id]
 
+sa = gspread.service_account(filename = 'service_account.json')
+sh = sa.open("Money")
+wks = sh.worksheet("Monthly")
+
+# updates the mongo db database, increases number for the rota 
 def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
 
-# @client.event
-# async def on_ready():
-#     print("Bot is ready!")
+@client.event
+async def on_ready():
+    print(f'{client.user} has connected to Discord!')
+
+# COMMANDS ------------------------------------------------
 
 @client.command()
 async def ping(ctx):
@@ -50,10 +57,6 @@ async def ping(ctx):
 async def money(ctx, *, person = None):
   # spreadsheet_id = "1iPj_UJp5D-LJJFSppaZTyJEqQvPjMi2YUPMN7c3-tbg"
   # sheet_id = 0
-
-  sa = gspread.service_account(filename = 'service_account.json')
-  sh = sa.open("Money")
-  wks = sh.worksheet("Monthly")
 
   em_message = f"""**{wks.acell('Y4:Z4').value}** \n{wks.acell('Y5').value} {wks.acell('Z5').value} \n{wks.acell('Y6').value} {wks.acell('Z6').value} \n"""
   sim_message = f"""**{wks.acell('Y8:Z8').value}** \n{wks.acell('Y9').value} {wks.acell('Z9').value} \n{wks.acell('Y10').value} {wks.acell('Z10').value} \n"""
@@ -78,10 +81,6 @@ async def money(ctx, *, person = None):
     
     else:
       await ctx.send("Who is that?? Please try again :weary: ")
-
-@client.event
-async def on_ready():
-    print(f'{client.user} has connected to Discord!')
 
     
 # def runBot():
