@@ -115,7 +115,7 @@ async def moneyupdate(ctx, *, item = None, amount = None, person = None):
     elif person == "communal":
       pass
     else:
-      await ctx.send("Who is that?? Please try again :weary: ")
+      await ctx.send(f"Who is {person}?? Please try again :weary: ")
 
 
     
