@@ -90,10 +90,10 @@ async def moneyupdate(ctx, *, item = None, amount = None, person = None):
 
   print(item, amount, person)
   if item == None:
-    await ctx.send("You didn't include an item :( Please try again :smile: ")
+    await ctx.send("You didn't include an item :(")
 
   if amount == None:
-    await ctx.send("How much does it cost? Please try again and add a cost :smile: ")
+    await ctx.send("How much does it cost?")
 
   if person == None:
     await ctx.send("You didn't include a person :( Please try again :smile: ")
