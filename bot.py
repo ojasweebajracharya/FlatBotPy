@@ -87,7 +87,9 @@ async def money(ctx, *, person = None):
 # updates people and communal (person = communal if it was communal)
 @client.command(aliases=['money-update'])
 async def moneyupdate(ctx, *args):
-
+  arguments = ', '.join(args)
+  await ctx.send(f'{len(args)} arguments: {arguments}')
+  
   item = args[0]
   amount = args[1]
   person = args[2]
