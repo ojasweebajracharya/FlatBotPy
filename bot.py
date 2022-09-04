@@ -110,7 +110,7 @@ async def moneyupdate(ctx, *args):
 
     if person == "emily":
       # so item and then the person who sent the message 
-      wks.update("A4:C4", [[item, 'Ojaswee', int(amount)]])
+      wks.update("A4:C4", [[item, 'Ojaswee', float(amount)]])
       # then this bit updates the amount, person and yes/no
       wks.update("D4:E4", [[int(amount), 'No']])
 
