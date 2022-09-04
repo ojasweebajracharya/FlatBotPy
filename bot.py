@@ -86,9 +86,12 @@ async def money(ctx, *, person = None):
 
 # updates people and communal (person = communal if it was communal)
 @client.command(aliases=['money-update'])
-async def moneyupdate(ctx, *, item = None, amount = None, person = None):
+async def moneyupdate(ctx, *args):
 
-  print(item, amount, person)
+  item = args[0]
+  amount = args[1]
+  person = args[2]
+
   if item == None:
     await ctx.send("You didn't include an item :(")
 
