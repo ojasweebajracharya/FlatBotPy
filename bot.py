@@ -133,6 +133,7 @@ async def moneyupdate(ctx, *args):
         await ctx.send("Errr Emily?? I think the sheet is full :sweat_smile: ")
 
       wks.update(f"N{communal_row_number}:P{communal_row_number}", [[item, current_person, float(amount)]])
+      await ctx.send("The communal has been updated!")
 
     else:
       # item and the person who sent the message 
