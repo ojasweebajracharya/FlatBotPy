@@ -47,6 +47,7 @@ def update_num():
   collection.update_one({"_id":0},{ "$inc": {"num": +1}})
 
 def get_person(person_id):
+  print(person_id)
   if person_id == oj_id:
     return "Ojaswee"
   elif person_id == em_id:
