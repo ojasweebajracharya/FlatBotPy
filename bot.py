@@ -58,7 +58,7 @@ def get_person(person_id):
 
 def get_next_free_row_number(starting_letter):
   for i in range(4, 100):
-    if wks.acell(f"{starting_letter}{i}") == "":
+    if wks.acell(f"{starting_letter}{i}").value == "":
       print(i)
       return int(i)
   
