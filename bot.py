@@ -89,10 +89,12 @@ async def money(ctx, *, person = None):
 async def moneyupdate(ctx, *args):
   arguments = ', '.join(args)
   await ctx.send(f'{len(args)} arguments: {arguments}')
-  
+
   item = args[0]
   amount = args[1]
   person = args[2]
+
+  await ctx.send(f"{item}, {amount}, {person}")
 
   if item == None:
     await ctx.send("You didn't include an item :(")
