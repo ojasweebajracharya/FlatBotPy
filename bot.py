@@ -85,9 +85,10 @@ async def money(ctx, *, person = None):
       await ctx.send("Who is that?? Please try again :weary: ")
 
 # updates people and communal (person = communal if it was communal)
-@client.command(aliases=['money-update', 'money update'])
+@client.command(aliases=['money-update'])
 async def moneyupdate(ctx, *, item = None, amount = None, person = None):
 
+  print(item, amount, person)
   if item == None:
     await ctx.send("You didn't include an item :( Please try again :smile: ")
 
