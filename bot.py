@@ -167,18 +167,18 @@ async def cleaningschedule(ctx):
   printSchedule()
 
 
-def printSchedule():
+async def printSchedule():
   results = collection.find({"_id":0})
   numArr = [result["num"] for result in results]
   num = numArr[0]
 
   flatBotChannel = client.get_channel(981536894867345418)
   
-  flatBotChannel.send(f"Hiiiii! This week it is <@{flatmates_ids[num % 3]}>'s turn to take out the kitchen bins and vacuum/broom the hall")
+  await flatBotChannel.send(f"Hiiiii! This week it is <@{flatmates_ids[num % 3]}>'s turn to take out the kitchen bins and vacuum/broom the hall")
 
-  flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the floor, clean the shower :)) ")
+  await flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the floor, clean the shower :)) ")
 
-  flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
+  await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
 
 
 # async def printSchedule():
@@ -205,12 +205,10 @@ def printSchedule():
 
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
 # @aiocron.crontab('0 0 * * mon')
-# @aiocron.crontab('00 20 * * tue')
-# async def cornjob1():
-#     await printSchedule()
+@aiocron.crontab('50 20 * * tue')
+async def cornjob():
+    await printSchedule()
 
     # update_num()
-
-printSchedule()
 
 client.run(TOKEN, log_handler=handler)
