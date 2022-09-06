@@ -11,6 +11,7 @@ import logging
 import gspread
 
 logging.basicConfig(level=logging.INFO)
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 
 # Connecting to MongoDB
 MONGO_URI = os.getenv('MONGO_URI')
@@ -155,6 +156,7 @@ async def moneyupdate(ctx, *args):
       else:
         await ctx.send(f"Who is {person}?? Please try again :weary: ")
 
+# clean the money schedule and add cron job to run this once a month
 
 # def runBot():
 #   client.on("ready", testChannel())
@@ -164,7 +166,7 @@ async def moneyupdate(ctx, *args):
 async def cleaningschedule(ctx):
   printSchedule()
 
-@client.event()
+
 async def printSchedule():
   results = collection.find({"_id":0})
   numArr = [result["num"] for result in results]
@@ -203,10 +205,10 @@ async def printSchedule():
 
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
 # @aiocron.crontab('0 0 * * mon')
-@aiocron.crontab('00 20 * * tue')
-async def cornjob1():
-    await printSchedule()
+# @aiocron.crontab('00 20 * * tue')
+# async def cornjob1():
+#     await printSchedule()
 
     # update_num()
-
-client.run(TOKEN)
+printSchedule()
+client.run(TOKEN, log_handler=handler)
