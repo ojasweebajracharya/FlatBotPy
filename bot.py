@@ -162,17 +162,19 @@ async def moneyupdate(ctx, *args):
 # cleaning schedule 
 @client.command()
 async def printSchedule(ctx):
-  results = collection.find({"_id":0})
-  numArr = [result["num"] for result in results]
-  num = numArr[0]
+  # results = collection.find({"_id":0})
+  # numArr = [result["num"] for result in results]
+  # num = numArr[0]
 
-  flatBotChannel = client.get_channel(981536894867345418)
+  # flatBotChannel = client.get_channel(981536894867345418)
   
-  await flatBotChannel.send(f"Hiiiii! This week it is <@{flatmates_ids[num % 3]}>'s turn to take out the kitchen bins and vacuum/broom the hall")
+  # await flatBotChannel.send(f"Hiiiii! This week it is <@{flatmates_ids[num % 3]}>'s turn to take out the kitchen bins and vacuum/broom the hall")
 
-  await flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the floor, clean the shower :)) ")
+  # await flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the floor, clean the shower :)) ")
 
-  await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
+  # await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
+
+  update_num()
 
 
 # async def printSchedule():
@@ -190,7 +192,6 @@ async def printSchedule(ctx):
 
 #   await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
 
-  # update_num()
 
 # CRON FUNCTIONS ------------------------------------------
 
