@@ -14,6 +14,7 @@ logging.basicConfig(level=logging.INFO)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 
 # Connecting to MongoDB
+print("TEST 1")
 MONGO_URI = os.getenv('MONGO_URI')
 cluster = MongoClient(MONGO_URI)
 db = cluster["discord"]
@@ -25,6 +26,7 @@ collection = db["globalvars"]
 # collection.insert_one(post)
 
 # needed for it to work, Why?? Should probably check at some point?
+print("TEST 2")
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -68,6 +70,7 @@ def get_next_free_row_number(starting_letter):
 
 @client.event
 async def on_ready():
+    print("TEST 2")
     print(f'{client.user} has connected to Discord!')
 
 # COMMANDS ------------------------------------------------
@@ -168,6 +171,7 @@ async def cleaningschedule(ctx):
 
 
 async def printSchedule():
+  print("TEST 3")
   results = collection.find({"_id":0})
   numArr = [result["num"] for result in results]
   num = numArr[0]
@@ -207,6 +211,7 @@ async def printSchedule():
 # @aiocron.crontab('0 0 * * mon')
 @aiocron.crontab('07 21 * * tue')
 async def cornjobSchedule():
+    print("TEST 4")
     await printSchedule()
 
     # update_num()
