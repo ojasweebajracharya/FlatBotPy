@@ -160,8 +160,12 @@ async def moneyupdate(ctx, *args):
 #   client.on("ready", testChannel())
 
 # cleaning schedule 
-@client.command()
-async def printSchedule(ctx):
+@client.command(aliases=['cleaning-schedule'])
+async def cleaningschedule(ctx):
+  printSchedule()
+
+@client.event()
+async def printSchedule():
   results = collection.find({"_id":0})
   numArr = [result["num"] for result in results]
   num = numArr[0]
@@ -199,7 +203,7 @@ async def printSchedule(ctx):
 
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
 # @aiocron.crontab('0 0 * * mon')
-@aiocron.crontab('35 19 * * tue')
+@aiocron.crontab('00 20 * * tue')
 async def cornjob1():
     await printSchedule()
 
