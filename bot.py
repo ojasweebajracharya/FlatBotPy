@@ -206,7 +206,7 @@ async def printSchedule():
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
 # @aiocron.crontab('0 0 * * mon')
 @aiocron.crontab('07 21 * * tue')
-async def cornjob():
+async def cornjobSchedule():
     await printSchedule()
 
     # update_num()
