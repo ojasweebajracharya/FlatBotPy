@@ -181,6 +181,7 @@ async def on_ready():
 
 #   await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
 
+
 @tasks.loop(minutes = 1)  
 async def cronjob():
     '''Asyncio task that runs once an hour, checks if the hour is 8 am and it's a weekday m-f, then sends
@@ -196,8 +197,6 @@ async def cronjob():
     if run_job():
         c = client.get_channel(981536894867345418)
         await c.send('gooooo morning')
-
-
 
 cronjob.start()
 
@@ -233,5 +232,4 @@ cronjob.start()
 # @aiocron.crontab('*/5 * * * *')
 # async def cornjobSchedule():
 #   print("TEST 3")
-
-client.run(TOKEN)
+bot.run(TOKEN)
