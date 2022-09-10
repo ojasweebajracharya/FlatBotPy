@@ -9,8 +9,8 @@ from pymongo import MongoClient
 import logging
 import gspread
 
-logging.basicConfig(level=logging.INFO)
-handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+# logging.basicConfig(level=logging.INFO)
+# handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 
 # # Connecting to MongoDB
 # print("TEST 1")
