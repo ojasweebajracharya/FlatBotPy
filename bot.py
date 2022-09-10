@@ -186,17 +186,20 @@ async def on_ready():
 async def cronjob():
     '''Asyncio task that runs once an hour, checks if the hour is 8 am and it's a weekday m-f, then sends
       a 'good morning' message to the configured channel'''
+    c = client.get_channel(981536894867345418)
+    await c.send(f"It has been a minute.")
 
-    def run_job():
-        now = datetime.now()
-        weekday = now.weekday()
-        hour = now.time().hour
-        minute = now.time().minute
-        return 0 <= weekday <= 6 and minute == 22  
+
+    # def run_job():
+    #     now = datetime.now()
+    #     weekday = now.weekday()
+    #     hour = now.time().hour
+    #     minute = now.time().minute
+    #     return 0 <= weekday <= 6 and minute == 22  
   
-    if run_job():
-        c = client.get_channel(981536894867345418)
-        await c.send('gooooo morning')
+    # if run_job():
+    #     c = client.get_channel(981536894867345418)
+    #     await c.send('gooooo morning')
 
 cronjob.start()
 
