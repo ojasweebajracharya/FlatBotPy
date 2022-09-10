@@ -32,8 +32,8 @@ intents.message_content = True
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = commands.Bot(command_prefix = '!', intents=intents)
-# client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix = '!', intents=intents)
+client = discord.Client(intents=intents)
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
 sim_id = "719261320662351950"
@@ -75,12 +75,12 @@ async def on_ready():
 
 # COMMANDS ------------------------------------------------
 
-@client.command()
+@bot.command()
 async def ping(ctx):
   await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
 
 # displays balance
-@client.command()
+@bot.command()
 async def money(ctx, *, person = None):
 
   em_message = f"""**{wks.acell('Y4:Z4').value}** \n{wks.acell('Y5').value} {wks.acell('Z5').value} \n{wks.acell('Y6').value} {wks.acell('Z6').value} \n"""
@@ -108,7 +108,7 @@ async def money(ctx, *, person = None):
       await ctx.send("Who is that?? Please try again :weary: ")
 
 # updates people and communal (person = communal if it was communal)
-@client.command(aliases=['money-update'])
+@bot.command(aliases=['money-update'])
 async def moneyupdate(ctx, *args):
 
   item = args[0]
@@ -165,7 +165,7 @@ async def moneyupdate(ctx, *args):
 #   client.on("ready", testChannel())
 
 # cleaning schedule 
-@client.command(aliases=['cleaning-schedule'])
+@bot.command(aliases=['cleaning-schedule'])
 async def cleaningschedule(ctx):
   printSchedule()
 
@@ -209,7 +209,7 @@ async def printSchedule():
 
 # @aiocron.crontab('0 0 * * mon,wed,fri,sun')
 # @aiocron.crontab('0 0 * * mon')
-@aiocron.crontab('07 21 * * tue')
+@aiocron.crontab('20 40 * * sat')
 async def cornjobSchedule():
     print("TEST 4")
     await printSchedule()
