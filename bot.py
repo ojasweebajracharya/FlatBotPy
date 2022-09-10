@@ -220,9 +220,12 @@ cluster = MongoClient(MONGO_URI)
 db = cluster["discord"]
 collection = db["globalvars"]
 
+intents = discord.Intents.default()
+intents.message_content = True
+
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = discord.Client()
+client = discord.Client(intents=intents)
 flatmates = ["Emily","Simran","Ojaswee"]
 
 def update_num():
