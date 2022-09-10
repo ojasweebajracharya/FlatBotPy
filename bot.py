@@ -30,7 +30,7 @@ intents.message_content = True
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 client = discord.Client(intents=intents)
-# bot = commands.Bot(command_prefix = '!', intents=intents)
+bot = commands.Bot(command_prefix = '!', intents=intents)
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
 sim_id = "719261320662351950"
@@ -181,26 +181,46 @@ async def on_ready():
 
 #   await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
 
-@tasks.loop(seconds = 15)
-async def checkSunday():
-  print("TEST 3")
-  now = datetime.now()
-  weekday = now.weekday()
-  if weekday == 5:
-    global flatmates_ids  
+@tasks.loop(minute = 1)  
+async def cronjob():
+    '''Asyncio task that runs once an hour, checks if the hour is 8 am and it's a weekday m-f, then sends
+      a 'good morning' message to the configured channel'''
 
-    results = collection.find({"_id":0})
-    numArr = [result["num"] for result in results]
-    num = numArr[0]
+    def run_job():
+        now = datetime.now()
+        weekday = now.weekday()
+        hour = now.time().hour
+        minute = now.time().minute
+        return 0 <= weekday <= 6 and minute == 20  
+  
+    if run_job():
+        c = client.get_channel(981536894867345418)
+        await c.send('gooooo morning')
 
-    flatBotChannel = client.get_channel(981536894867345418)
+
+
+cronjob.start()
+
+# @tasks.loop(seconds = 15)
+# async def checkSunday():
+#   print("TEST 3")
+#   now = datetime.now()
+#   weekday = now.weekday()
+#   if weekday == 5:
+#     global flatmates_ids  
+
+#     results = collection.find({"_id":0})
+#     numArr = [result["num"] for result in results]
+#     num = numArr[0]
+
+#     flatBotChannel = client.get_channel(981536894867345418)
     
-    await flatBotChannel.send(f"Hiiiii! This week it is <@{flatmates_ids[num % 3]}>'s turn to take out the kitchen bins and vacuum/broom the hall")
+#     await flatBotChannel.send(f"Hiiiii! This week it is <@{flatmates_ids[num % 3]}>'s turn to take out the kitchen bins and vacuum/broom the hall")
 
-    await flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the floor, clean the shower :)) ")
+#     await flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the floor, clean the shower :)) ")
 
-    await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
-    update_num()
+#     await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
+#     update_num()
 
 # CRON FUNCTIONS ------------------------------------------
 
@@ -213,5 +233,5 @@ async def checkSunday():
 # @aiocron.crontab('*/5 * * * *')
 # async def cornjobSchedule():
 #   print("TEST 3")
-checkSunday.start()
+
 client.run(TOKEN)
