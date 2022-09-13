@@ -164,7 +164,7 @@ async def moneyupdate(ctx, *args):
 # cleaning schedule 
 @bot.command(aliases=['cleaning-schedule'])
 async def cleaningschedule(ctx):
-  printSchedule()
+  await printSchedule()
 
 
 async def printSchedule():
