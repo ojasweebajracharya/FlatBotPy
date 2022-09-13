@@ -162,12 +162,12 @@ async def moneyupdate(ctx, *args):
 #   client.on("ready", testChannel())
 
 # cleaning schedule 
+# @bot.command(aliases=['cleaning-schedule'])
+# async def cleaningschedule(ctx):
+#   await printSchedule()
+
 @bot.command(aliases=['cleaning-schedule'])
-async def cleaningschedule(ctx):
-  await printSchedule()
-
-
-async def printSchedule():
+async def printSchedule(ctx):
   print("TEST 3")
   results = collection.find({"_id":0})
   numArr = [result["num"] for result in results]
