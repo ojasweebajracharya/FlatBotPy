@@ -1,5 +1,5 @@
 discord
-aiocron
+asyncio
 python-dotenv
 pymongo
 dnspython
