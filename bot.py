@@ -1,6 +1,7 @@
 import json
 import discord
 from discord.ext import tasks, commands
+from nextcord.ext import commands
 from datetime import datetime
 import os
 import aiocron
@@ -10,7 +11,6 @@ import logging
 import gspread
 
 # Connecting to MongoDB
-print("TEST 1")
 MONGO_URI = os.getenv('MONGO_URI')
 cluster = MongoClient(MONGO_URI)
 db = cluster["discord"]
@@ -22,7 +22,6 @@ collection = db["globalvars"]
 # collection.insert_one(post)
 
 # needed for it to work, Why?? Should probably check at some point?
-print("TEST 2")
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -66,9 +65,8 @@ def get_next_free_row_number(starting_letter):
 
 @client.event
 async def on_ready():
-    print("TEST 2")
     print(f'{client.user} has connected to Discord!')
-
+    await schedule_daily_message()
 # COMMANDS ------------------------------------------------
 
 @bot.command()
@@ -182,25 +180,17 @@ async def printSchedule(ctx):
   await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
   # update_num()
 
-@tasks.loop(minutes = 1)  
-async def cronjob():
-    '''Asyncio task that runs once an hour, checks if the hour is 8 am and it's a weekday m-f, then sends
-      a 'good morning' message to the configured channel'''
-    c = client.get_channel(981536894867345418)
-    await c.send(f"It has been a minute.")
+async def schedule_daily_message():
+  now = datetime.datetime.now()
+  then = now.datetime.timedelta(days=1)
+  then.replace(hour=19, minute=40)
+  wait_time = (then - now).total_seconds()
+  await asyncio.sleep(wait_time)
 
-    def run_job():
-        now = datetime.now()
-        weekday = now.weekday()
-        hour = now.time().hour
-        minute = now.time().minute
-        return 0 <= weekday <= 6 and minute == 22  
-  
-    if run_job():
-        c = client.get_channel(981536894867345418)
-        await c.send('goooood morning')
+  channel = bot.get_channel(981536894867345418)
 
-cronjob.start()
+  await channel.send("Good morning!")
+
 
 # @tasks.loop(seconds = 15)
 # async def checkSunday():
