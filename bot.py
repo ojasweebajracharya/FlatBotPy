@@ -189,8 +189,9 @@ async def printSchedule(ctx):
 
 #   await channel.send("Good")
 
-@tasks.loop(minutes = 2.0)
+@bot.event
 async def send_message():
+  await bot.wait_until_ready()
   channel = bot.get_channel(981536894867345418)
   channel.send("testing schedule message")
 
@@ -226,4 +227,5 @@ async def send_message():
 # @aiocron.crontab('*/5 * * * *')
 # async def cornjobSchedule():
 #   print("TEST 3")
+bot.loop.create_task(send_message())
 bot.run(TOKEN)
