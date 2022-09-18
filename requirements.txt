@@ -5,3 +5,4 @@ pymongo
 dnspython
 google-cloud
 gspread
+nextcord
