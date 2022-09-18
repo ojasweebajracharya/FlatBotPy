@@ -4,7 +4,6 @@ from discord.ext import tasks, commands
 from nextcord.ext import commands
 from datetime import datetime
 import os
-import aiocron
 from dotenv import load_dotenv
 from pymongo import MongoClient
 import logging
@@ -17,6 +16,7 @@ db = cluster["discord"]
 collection = db["globalvars"]
 
 # check if "num" exists in the collection
+
 # post = {"_id":0, "num": 0}
 # collection.insert_one(post)
 
@@ -62,7 +62,7 @@ def get_next_free_row_number(starting_letter):
   
   return 0
 
-@client.event
+@bot.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
     await schedule_daily_message()
@@ -188,7 +188,7 @@ async def schedule_daily_message():
 
   channel = bot.get_channel(981536894867345418)
 
-  await channel.send("Good morning!")
+  await channel.send("Good")
 
 
 # @tasks.loop(seconds = 15)
