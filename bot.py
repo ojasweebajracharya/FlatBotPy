@@ -17,7 +17,6 @@ db = cluster["discord"]
 collection = db["globalvars"]
 
 # check if "num" exists in the collection
-
 # post = {"_id":0, "num": 0}
 # collection.insert_one(post)
 
