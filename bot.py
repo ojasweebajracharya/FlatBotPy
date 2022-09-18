@@ -1,8 +1,6 @@
 import json
 import discord
-import asyncio
 from discord.ext import tasks, commands
-from nextcord.ext import commands
 from datetime import datetime
 import os
 from dotenv import load_dotenv
@@ -63,10 +61,10 @@ def get_next_free_row_number(starting_letter):
   
   return 0
 
-@bot.event
+@client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
-    await schedule_daily_message()
+    send_message.start()
 # COMMANDS ------------------------------------------------
 
 @bot.command()
@@ -180,17 +178,21 @@ async def printSchedule(ctx):
   await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
   # update_num()
 
-async def schedule_daily_message():
-  now = datetime.datetime.now()
-  then = now.datetime.timedelta(days=1)
-  then.replace(hour=19, minute=40)
-  wait_time = (then - now).total_seconds()
-  await asyncio.sleep(wait_time)
+# async def schedule_daily_message():
+#   now = datetime.datetime.now()
+#   then = now.datetime.timedelta(days=1)
+#   then.replace(hour=19, minute=40)
+#   wait_time = (then - now).total_seconds()
+#   await asyncio.sleep(wait_time)
 
+#   channel = bot.get_channel(981536894867345418)
+
+#   await channel.send("Good")
+
+@tasks.loop(minutes = 2.0)
+async def send_message():
   channel = bot.get_channel(981536894867345418)
-
-  await channel.send("Good")
-
+  channel.send("testing schedule message")
 
 # @tasks.loop(seconds = 15)
 # async def checkSunday():
