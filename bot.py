@@ -25,7 +25,7 @@ intents.message_content = True
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-client = discord.Client(intents=intents)
+# client = discord.Client(intents=intents)
 bot = commands.Bot(command_prefix = '!', intents=intents)
 oj_id = "571276422363217951"
 em_id = "238389040187965441"
@@ -61,15 +61,15 @@ def get_next_free_row_number(starting_letter):
   
   return 0
 
-@client.event
+@bot.event
 async def on_ready():
-    print(f'{client.user} has connected to Discord!')
+    print(f'{bot.user.name} has connected to Discord!')
     await send_message.start()
 # COMMANDS ------------------------------------------------
 
 @bot.command()
 async def ping(ctx):
-  await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
+  await ctx.send(f'Pong! {round(bot.latency * 1000)}ms')
 
 # displays balance
 @bot.command()
