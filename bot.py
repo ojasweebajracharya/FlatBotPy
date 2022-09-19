@@ -64,7 +64,7 @@ def get_next_free_row_number(starting_letter):
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
-    send_message.start()
+    await send_message.start()
 # COMMANDS ------------------------------------------------
 
 @bot.command()
@@ -189,7 +189,7 @@ async def printSchedule(ctx):
 
 #   await channel.send("Good")
 
-@tasks.loop(seconds = 15)
+@tasks.loop(minutes = 2)
 async def send_message():
   await bot.wait_until_ready()
   channel = bot.get_channel(981536894867345418)
