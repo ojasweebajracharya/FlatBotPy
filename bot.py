@@ -176,7 +176,7 @@ async def printSchedule(ctx):
   await flatBotChannel.send(f"<@{flatmates_ids[(num+1) % 3]}>'s turn to clean the toilet and shower - wipe down surfaces, clean the floor, clean the shower :)) ")
 
   await flatBotChannel.send(f"<@{flatmates_ids[(num+2) % 3]}>'s turn to clean the kitchen. This includes cleaning the surfaces, sweep the floor and use floor wipes for any spillss etc. clean the hob, the microwave (inside too), the fridge (inside as well).")
-  update_num()
+  # update_num()
 
 # async def schedule_daily_message():
 #   now = datetime.datetime.now()
